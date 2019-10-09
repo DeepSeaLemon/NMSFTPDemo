@@ -129,9 +129,6 @@
         make.width.mas_equalTo(btnWidth);
     }];
     
-    self.urlTF.text = @"192.168.238.117";
-    self.accountTF.text = @"10361";
-    self.passwordTF.text = @"123456";
 }
 
 #pragma mark - getter
