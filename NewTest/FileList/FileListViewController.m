@@ -41,14 +41,19 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"下载文件？" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         if (self.model.sftp.isConnected) {
+            [self.hud showAnimated:YES];
             NSData *data = [self.model.sftp contentsAtPath:[NSString stringWithFormat:@"%@%@",self.model.path,fileName]];
             [[LocalFilesManager shared]createFileWith:data fileName:fileName result:^(BOOL isSuccess) {
                 if (isSuccess) {
+                    [self.hud hideAnimated:NO afterDelay:0.5];
+                    self.hud.mode = MBProgressHUDModeText;
                     self.hud.label.text = @"下载成功";
                     [self.hud showAnimated:YES];
                     [self.hud hideAnimated:YES afterDelay:1.5];
                 }else {
+                    [self.hud hideAnimated:NO afterDelay:0.5];
                     self.hud.label.text = @"下载失败";
+                    self.hud.mode = MBProgressHUDModeText;
                     [self.hud showAnimated:YES];
                     [self.hud hideAnimated:YES afterDelay:1.5];
                 }
@@ -143,10 +148,10 @@
 }
 
 - (MBProgressHUD *)hud {
-    if (_hud) {
+    if (_hud == nil) {
         _hud = [[MBProgressHUD alloc]initWithView:self.view];
         _hud.label.text = @"下载中...";
-        _hud.mode = MBProgressHUDModeText;
+        
     }
     return _hud;
 }

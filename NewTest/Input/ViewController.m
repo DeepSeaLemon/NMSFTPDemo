@@ -125,10 +125,12 @@
         NSData *data = [self.sftp contentsAtPath:testFilePath];
         [[LocalFilesManager shared]createFileWith:data fileName:@"Test.txt" result:^(BOOL isSuccess) {
             if (isSuccess) {
+                self.hud.mode = MBProgressHUDModeText;
                 self.hud.label.text = @"下载成功";
                 [self.hud showAnimated:YES];
                 [self.hud hideAnimated:YES afterDelay:1.5];
             }else {
+                self.hud.mode = MBProgressHUDModeText;
                 self.hud.label.text = @"下载失败";
                 [self.hud showAnimated:YES];
                 [self.hud hideAnimated:YES afterDelay:1.5];
@@ -152,10 +154,9 @@
 }
 
 - (MBProgressHUD *)hud {
-    if (_hud) {
+    if (_hud == nil) {
         _hud = [[MBProgressHUD alloc]initWithView:self.view];
         _hud.label.text = @"下载中...";
-        _hud.mode = MBProgressHUDModeText;
     }
     return _hud;
 }
