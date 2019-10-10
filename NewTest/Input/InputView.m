@@ -19,7 +19,7 @@
 @property (nonatomic ,strong) UIButton *lookLocalBtn;
 @property (nonatomic ,strong) UIButton *downloadBtn;
 @property (nonatomic ,strong) UIButton *uploadBtn;
-
+@property (nonatomic ,strong) UIButton *searchBtn;
 @end
 
 @implementation InputView
@@ -41,6 +41,9 @@
                 break;
             case 3:
                 [_delegate clickInputViewBtn:InputViewBtnTypeLook];
+                break;
+            case 4:
+                [_delegate clickInputViewBtn:InputViewBtnTypeSearch];
                 break;
             default:
                 break;
@@ -111,6 +114,13 @@
     [self.lookLocalBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.height.equalTo(self.uploadBtn);
         make.top.mas_equalTo(kScreenHeight-110);
+    }];
+    
+    [self addSubview:self.searchBtn];
+    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.equalTo(self.uploadBtn);
+        make.top.mas_equalTo(kScreenHeight-110);
+        make.left.equalTo(self.lookLocalBtn.mas_right).offset(btnOffect);
     }];
     
     [self addSubview:self.downloadBtn];
@@ -216,5 +226,16 @@
         [_lookLocalBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _lookLocalBtn;
+}
+
+- (UIButton *)searchBtn {
+    if (_searchBtn == nil) {
+        _searchBtn = [[UIButton alloc]init];
+        _searchBtn.tag = 4;
+        _searchBtn.backgroundColor = [UIColor grayColor];
+        [_searchBtn setTitle:@"查找" forState:UIControlStateNormal];
+        [_searchBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _searchBtn;
 }
 @end

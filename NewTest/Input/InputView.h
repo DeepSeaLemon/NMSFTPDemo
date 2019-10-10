@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, InputViewBtnType) {
     InputViewBtnTypeUp,
     InputViewBtnTypeDown,
     InputViewBtnTypeLook,
+    InputViewBtnTypeSearch,
 };
 
 @protocol InputViewBtnClickDelegate <NSObject>

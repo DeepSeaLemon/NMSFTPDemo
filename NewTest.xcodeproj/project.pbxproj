@@ -12,6 +12,7 @@
 		021A308C234C66E70013A709 /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021A308B234C66E70013A709 /* FileListViewController.m */; };
 		025BCD76234C7F010086D64D /* LocalFilesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 025BCD75234C7F010086D64D /* LocalFilesListViewController.m */; };
 		028F53B5234D860700A951AE /* LookFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 028F53B4234D860700A951AE /* LookFileViewController.m */; };
+		0293A9BA234ECF830091B1B3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0293A9B9234ECF830091B1B3 /* SearchViewController.m */; };
 		02A7B36C23405C1500B22905 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B36B23405C1400B22905 /* InputView.m */; };
 		02A7B36F234083B800B22905 /* InputModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A7B36E234083B800B22905 /* InputModel.m */; };
 		02A7B37123408F1500B22905 /* Test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02A7B37023408F1500B22905 /* Test.txt */; };
@@ -58,6 +59,8 @@
 		028F53AF234D7BAE00A951AE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		028F53B3234D860700A951AE /* LookFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookFileViewController.h; sourceTree = "<group>"; };
 		028F53B4234D860700A951AE /* LookFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookFileViewController.m; sourceTree = "<group>"; };
+		0293A9B8234ECF830091B1B3 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		0293A9B9234ECF830091B1B3 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		02A7B36A23405C1400B22905 /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
 		02A7B36B23405C1400B22905 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
 		02A7B36D234083B800B22905 /* InputModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputModel.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				02A7B36B23405C1400B22905 /* InputView.m */,
 				02FD117C2340560200CE9822 /* ViewController.h */,
 				02FD117D2340560200CE9822 /* ViewController.m */,
+				0293A9B8234ECF830091B1B3 /* SearchViewController.h */,
+				0293A9B9234ECF830091B1B3 /* SearchViewController.m */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				028F53B5234D860700A951AE /* LookFileViewController.m in Sources */,
 				02FD11892340560400CE9822 /* main.m in Sources */,
 				020FC17B234C675400AD580D /* FileListModel.m in Sources */,
+				0293A9BA234ECF830091B1B3 /* SearchViewController.m in Sources */,
 				02FD117B2340560200CE9822 /* AppDelegate.m in Sources */,
 				020FC17E234C787900AD580D /* LocalFilesManager.m in Sources */,
 			);

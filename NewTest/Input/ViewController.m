@@ -12,6 +12,7 @@
 #import "FileListViewController.h"
 #import "LocalFilesListViewController.h"
 #import "FileListModel.h"
+#import "SearchViewController.h"
 
 @interface ViewController ()<InputViewBtnClickDelegate>
 
@@ -57,6 +58,10 @@
             // 下载文件到本地
             [self lookLocalFiles];
             break;
+        case InputViewBtnTypeSearch:
+            // 查找服务界面
+            [self pushToSearch];
+            break;
         default:
             break;
     }
@@ -97,6 +102,10 @@
     }
 }
 
+- (void)pushToSearch {
+    SearchViewController *svc = [[SearchViewController alloc]init];
+    [self.navigationController pushViewController:svc animated:YES];
+}
 - (void)pushToFileList {
     FileListModel *model = [[FileListModel alloc]init];
     model.fileListArray = [[self.sftp contentsOfDirectoryAtPath:rootPath] mutableCopy];
