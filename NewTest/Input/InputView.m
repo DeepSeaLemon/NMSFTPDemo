@@ -138,7 +138,6 @@
         make.top.mas_equalTo(kScreenHeight-50);
         make.width.mas_equalTo(btnWidth);
     }];
-    
 }
 
 #pragma mark - getter

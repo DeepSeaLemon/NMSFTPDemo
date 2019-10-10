@@ -40,25 +40,29 @@
 - (void)downloadFileWithFileName:(NSString *)fileName {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"下载文件？" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        if (self.model.sftp.isConnected) {
-            [self.hud showAnimated:YES];
-            NSData *data = [self.model.sftp contentsAtPath:[NSString stringWithFormat:@"%@%@",self.model.path,fileName]];
-            [[LocalFilesManager shared]createFileWith:data fileName:fileName result:^(BOOL isSuccess) {
-                if (isSuccess) {
-                    [self.hud hideAnimated:NO afterDelay:0.5];
-                    self.hud.mode = MBProgressHUDModeText;
-                    self.hud.label.text = @"下载成功";
-                    [self.hud showAnimated:YES];
-                    [self.hud hideAnimated:YES afterDelay:1.5];
-                }else {
-                    [self.hud hideAnimated:NO afterDelay:0.5];
-                    self.hud.label.text = @"下载失败";
-                    self.hud.mode = MBProgressHUDModeText;
-                    [self.hud showAnimated:YES];
-                    [self.hud hideAnimated:YES afterDelay:1.5];
-                }
-            }];
-        }
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            if (self.model.sftp.isConnected) {
+                NSData *data = [self.model.sftp contentsAtPath:[NSString stringWithFormat:@"%@%@",self.model.path,fileName]];
+                [[LocalFilesManager shared]createFileWith:data fileName:fileName result:^(BOOL isSuccess) {
+                    if (isSuccess) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.hud.mode = MBProgressHUDModeText;
+                            self.hud.label.text = @"下载成功";
+                            [self.hud showAnimated:YES];
+                            [self.hud hideAnimated:YES afterDelay:1.5];
+                        });
+                    }else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.hud.label.text = @"下载失败";
+                            self.hud.mode = MBProgressHUDModeText;
+                            [self.hud showAnimated:YES];
+                            [self.hud hideAnimated:YES afterDelay:1.5];
+                        });
+                    }
+                }];
+            }
+        });
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancel];
@@ -151,7 +155,6 @@
     if (_hud == nil) {
         _hud = [[MBProgressHUD alloc]initWithView:self.view];
         _hud.label.text = @"下载中...";
-        
     }
     return _hud;
 }
